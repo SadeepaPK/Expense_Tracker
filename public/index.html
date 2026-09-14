@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Expense Tracker</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <header class="app-header">
+    <h1>💰 Expense Tracker</h1>
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="entry">Add Expense</button>
+      <button class="tab-btn" data-tab="loan">Loans</button>
+      <button class="tab-btn" data-tab="history">History</button>
+      <button class="tab-btn" data-tab="analytics">Analytics</button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ADD EXPENSE -->
+    <section id="entry" class="tab-panel active">
+      <div class="card form-card">
+        <h2>New Expense</h2>
+        <form id="expense-form">
+          <div class="field">
+            <label for="amount">Amount</label>
+            <input type="number" id="amount" name="amount" step="0.01" min="0.01" placeholder="0.00" required />
+          </div>
+
+          <div class="field">
+            <label for="category">Purpose / Category</label>
+            <select id="category" name="category" required>
+              <option value="" disabled selected>Select a category</option>
+              <option>Food</option>
+              <option>Transport</option>
+              <option>Utilities</option>
+              <option>Rent</option>
+              <option>Entertainment</option>
+              <option>Health</option>
+              <option>Shopping</option>
+              <option>Education</option>
+              <option>Loan</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="note">Note (optional)</label>
+            <input type="text" id="note" name="note" placeholder="e.g. Lunch with friends" />
+          </div>
+
+          <div class="field">
+            <label>Date &amp; Time</label>
+            <div class="timestamp-preview" id="timestamp-preview">Will be set automatically to now</div>
+          </div>
+
+          <button type="submit" class="btn-primary">Add Expense</button>
+          <p id="form-message" class="form-message"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ADD LOAN -->
+    <section id="loan" class="tab-panel">
+      <div class="card form-card">
+        <h2>New Loan</h2>
+        <form id="loan-form">
+          <div class="field">
+            <label for="loan-amount">Amount</label>
+            <input type="number" id="loan-amount" name="amount" step="0.01" min="0.01" placeholder="0.00" required />
+          </div>
+
+          <div class="field">
+            <label for="loan-holder">Friend</label>
+            <input type="text" id="loan-holder" name="holder" placeholder="e.g. Charlie" required />
+          </div>
+
+          <div class="field">
+            <label for="loan-note">Note (optional)</label>
+            <input type="text" id="loan-note" name="note" placeholder="e.g. Get tea" />
+          </div>
+
+          <div class="field">
+            <label>Date &amp; Time</label>
+            <div class="timestamp-preview" id="loan-timestamp-preview">Will be set automatically to now</div>
+          </div>
+
+          <button type="submit" class="btn-primary">Add Loan</button>
+          <p id="loan-form-message" class="form-message"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- HISTORY -->
+    <section id="history" class="tab-panel">
+      <div class="card">
+        <div class="history-header">
+          <h2>Transaction History</h2>
+          <div class="filters">
+            <select id="filter-category">
+              <option value="">All categories</option>
+              <option>Food</option>
+              <option>Transport</option>
+              <option>Utilities</option>
+              <option>Rent</option>
+              <option>Entertainment</option>
+              <option>Health</option>
+              <option>Shopping</option>
+              <option>Education</option>
+              <option>Loan</option>
+              <option>Other</option>
+            </select>
+            <input type="date" id="filter-from" />
+            <input type="date" id="filter-to" />
+            <button id="filter-clear" class="btn-secondary">Clear</button>
+          </div>
+        </div>
+
+        <div id="history-empty" class="empty-state" style="display:none;">
+          No transactions yet. Add your first expense to see it here.
+        </div>
+
+        <table class="history-table" id="history-table">
+          <thead>
+            <tr>
+              <th>Date &amp; Time</th>
+              <th>Category</th>
+              <th>Friend</th>
+              <th>Note</th>
+              <th class="amount-col">Amount</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="history-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ANALYTICS -->
+    <section id="analytics" class="tab-panel">
+      <div class="stats-grid">
+        <div class="card stat-card">
+          <div class="stat-label">Total Spent</div>
+          <div class="stat-value" id="stat-total">$0.00</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-label">Daily Average</div>
+          <div class="stat-value" id="stat-daily-avg">$0.00</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-label">Most Frequent Expense Type</div>
+          <div class="stat-value" id="stat-top-category">–</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-label">Transactions</div>
+          <div class="stat-value" id="stat-count">0</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Spending — Last 7 Days</h2>
+        <div id="bar-chart" class="bar-chart"></div>
+      </div>
+
+      <div class="card">
+        <h2>Category Breakdown</h2>
+        <div id="category-breakdown" class="category-breakdown"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

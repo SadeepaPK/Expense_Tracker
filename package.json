@@ -1,0 +1,12 @@
+{
+  "name": "expense-tracker",
+  "version": "1.0.0",
+  "description": "Expense tracker - plain Node.js backend, data stored in Supabase",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

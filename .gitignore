@@ -1,0 +1,8 @@
+# Node
+node_modules/
+
+# Environment variables — NEVER commit your Supabase keys
+.env
+
+# OS
+.DS_Store
