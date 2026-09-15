@@ -20,11 +20,15 @@ const fs = require('fs');
 const path = require('path');
 const url = require('url');
 
+require("dotenv").config();
+
 const PORT = process.env.PORT || 3000;
+
 const PUBLIC_DIR = path.join(__dirname, 'public');
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
 const TABLE = 'expenses';
 
 if (!SUPABASE_URL || !SUPABASE_KEY) {
